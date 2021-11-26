@@ -4,6 +4,12 @@
 @require: deco
 @require: hdecoset
 
+type consumption = (|
+  title: inline-text;
+  cost: int;
+  opt: inline-text;
+|)
+
 module Itinerary : sig
   direct +itinerary : [block-text] block-cmd
   direct +interstation : [inline-text?; inline-text; inline-text; inline-text; block-text] block-cmd
@@ -12,6 +18,7 @@ module Itinerary : sig
   direct +notation: [block-text] block-cmd
   direct +todo: [block-text] block-cmd
   direct +event: [block-text] block-cmd
+  direct +cost: [consumption list] block-cmd
 end = struct
 
 let-block ctx +itinerary inner = 
@@ -138,4 +145,38 @@ let-block ctx +interstation ?:from-station from-time to-station to-time informat
     let ib-title = read-inline (ctx |> set-font Latin (`Junicode-b` , 1.0, 0.)) {event} in
     let ib-note = embed-block-bottom ctx text-width (fun ctx -> read-block ctx inner) in
       line-break true false ctx (ib-title ++ inline-fil) +++ line-break false true ctx (inline-skip space-width ++ ib-note ++ inline-fil)
+    
+  let-block ctx +cost clist =
+    % left: (block-boxes, int)
+    let font-size-normal = 12pt in
+    let ctx = ctx |> set-font-size font-size-normal 
+          |> set-paragraph-margin (font-size-normal *' 0.8) (font-size-normal *' 0.8) in
+    let text-width = (get-text-width ctx) in
+    let spacing = 10pt in
+    let title-width = 100pt in
+    let cost-width = 60pt in
+    let toline ctx data = 
+      line-break true true ctx (
+          (embed-block-top ctx title-width (fun ctx -> line-break true true ctx (read-inline ctx data#title ++ inline-fil))) ++ inline-skip spacing 
+          ++ (embed-block-top ctx cost-width (fun ctx -> line-break true true ctx (inline-fil ++ read-inline ctx (embed-string ((arabic data#cost) ^ `円` ))))) ++ inline-skip spacing
+          ++ (embed-block-top ctx (text-width -' title-width -' cost-width -' spacing *' 2.) (fun ctx -> line-break true true ctx (read-inline ctx data#opt ++ inline-fil)))  
+      )
+    in
+    let (data, cost) = clist |> List.fold-left (
+        fun (left-data, left-cost) data -> 
+          (left-data +++ (toline ctx data), left-cost + data#cost)
+      ) (block-nil, 0)
+    in
+    line-break true true ctx (read-inline (ctx |> set-font-size 14pt) {合計金額} ++ inline-fil)
+    +++ line-break true true ctx (
+      (embed-block-top ctx title-width (fun ctx -> line-break true true ctx (read-inline ctx {obj} ++ inline-fil))) ++ inline-skip spacing 
+        ++ (embed-block-top ctx cost-width (fun ctx -> line-break true true ctx (inline-fil ++ read-inline ctx {cost}))) ++ inline-skip spacing
+        ++ (embed-block-top ctx (text-width -' title-width -' cost-width -' spacing *' 2.) (fun ctx -> line-break true true ctx (read-inline ctx {option} ++ inline-fil)))
+    )
+    +++ data
+    +++ line-break true true ctx (
+      (embed-block-top ctx title-width (fun ctx -> line-break true true ctx (read-inline ctx {合計} ++ inline-fil))) ++ inline-skip spacing 
+        ++ (embed-block-top ctx cost-width (fun ctx -> line-break true true ctx (inline-fil ++ read-inline ctx (embed-string (arabic cost))))) ++ inline-skip spacing
+        ++ inline-fil
+    )
 end
