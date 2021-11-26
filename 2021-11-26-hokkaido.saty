@@ -120,15 +120,53 @@ document (|
         札幌市営南北線・麻生行
       }
     >
-    % 路面電車のやつ
     +interstation?:({狸小路}){1906}{西４丁目}{1958}<
       +Itinerary.p{
         札幌市電・外回り
       }
     >
     +StdJaReport.p {
-      ご飯とか観光とかは特に決めてない
+      晩御飯は松尾ジンギスカン（札幌大通南１条店）
     }
+    +StdJaReport.p {
+      お値段の味がした（こなみ）
+    }
+    +StdJaReport.p {
+      あとはホテルに行ってこれを２時間ほど……
+    }
+
+    +cost [
+      (|
+        title = {ICOCA};
+        cost = 3000;
+        opt = {帰りの分のことを考えて: ここでは1500円}
+      |);
+      (|
+        title = {KITACA};
+        cost = 2000;
+        opt = {deposit: 500円}
+      |);
+      (|
+        title = {HOKKAIDO LOVE! 6日間周遊パス};
+        cost = 12000;
+        opt = {}
+      |);
+      (|
+        title = {ホテル 10 日分};
+        cost = 11800;
+        opt = {2000円 ${\times} 10のクーポン取得}
+      |);
+      (|
+        title = {札幌市交通局 地下鉄専用１日乗車券};
+        cost = 830;
+        opt = {}
+      |);
+      (|
+        title = {ごはん};
+        cost = 3300 - 3300;
+        opt = {クーポン2枚使用}
+      |);
+    ];
   >
 
   % +section{11/27} <
