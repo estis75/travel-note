@@ -176,7 +176,7 @@ let-block ctx +interstation ?:from-station from-time to-station to-time informat
     +++ data
     +++ line-break true true ctx (
       (embed-block-top ctx title-width (fun ctx -> line-break true true ctx (read-inline ctx {合計} ++ inline-fil))) ++ inline-skip spacing 
-        ++ (embed-block-top ctx cost-width (fun ctx -> line-break true true ctx (inline-fil ++ read-inline ctx (embed-string (arabic cost))))) ++ inline-skip spacing
+        ++ (embed-block-top ctx cost-width (fun ctx -> line-break true true ctx (inline-fil ++ read-inline ctx (embed-string ((arabic cost) ^ `円` ))))) ++ inline-skip spacing
         ++ inline-fil
     )
 end
