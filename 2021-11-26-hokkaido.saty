@@ -15,14 +15,9 @@ document (|
         近鉄奈良線快速急行・神戸三宮行 3rd pf
       }
     >
-    +interstation?:({難波}){0945}{岸和田}{1007} <
+    +interstation?:({難波}){0939}{関西空港}{1028} <
       +Itinerary.p {
-        南海特急サザン11号 和歌山市行 5th pf
-      }
-    >
-    +interstation?*{1009}{関西空港}{1028} <
-      +Itinerary.p {
-        南海線空港急行・関西空港行 1st pf
+        南海線空港急行・関西空港行 2nd pf
       }
     >
     +interstation?:({KIX: Kansai International Airport}){12:00}{CTS: New Chitose Airport}{13:55}<
@@ -32,6 +27,22 @@ document (|
       +Itinerary.notation<
         +StdJaReport.p{
           搭乗手続きは90分前〜30分前まで
+        }
+      >
+      +Itinerary.event <
+        +StdJaReport.p{
+          なんだかんだで離陸したのが12:20頃．
+          離陸してすぐに機首角40度は優にあるんじゃないかと思えるくらいの上昇をしていて，これでも落ちない現代技術にひどく感動した．
+        }
+        +StdJaReport.p{
+          ぐぅっと上がる感覚，マジで久々で面白かったけど気持ち悪い．
+          あと揺れると怖い．メーデーのことしか思い出せないのでやばい．
+        }
+        +StdJaReport.p{
+          （移動オタクが）普段2日かけて移動するような距離をほんの２時間で移動しちゃうの，なんというか物悲しさがある．
+        }
+        +StdJaReport.p{
+          「あと20分で空港に到着します．空港周辺の気温は4度です」${\leftarrow} 草，死じゃん
         }
       >
     >

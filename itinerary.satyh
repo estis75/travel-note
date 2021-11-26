@@ -9,6 +9,7 @@ module Itinerary : sig
   direct +p: [inline-text] block-cmd
   direct +notation: [block-text] block-cmd
   direct +todo: [block-text] block-cmd
+  direct +event: [block-text] block-cmd
 end = struct
 
 let-block ctx +itinerary inner = 
@@ -119,6 +120,18 @@ let-block ctx +interstation ?:from-station from-time to-station to-time informat
     in
     let text-width = (get-text-width ctx) *' 0.9 in
     let ib-title = read-inline (ctx |> set-font Latin (`Junicode-b` , 1.0, 0.)) {todo} in
+    let ib-note = embed-block-bottom ctx text-width (fun ctx -> read-block ctx inner) in
+      line-break true true ctx (ib-title ++ inline-fil) +++ line-break true true ctx (inline-skip space-width ++ ib-note ++ inline-fil)
+
+  let-block ctx +event inner =
+    let font-size-normal = get-font-size ctx in
+    let space-width = (get-text-width ctx) *' 0.05 in
+    let ctx =
+      ctx |> set-font-size font-size-normal 
+          |> set-paragraph-margin (font-size-normal *' 0.8) (font-size-normal *' 0.8)
+    in
+    let text-width = (get-text-width ctx) *' 0.9 in
+    let ib-title = read-inline (ctx |> set-font Latin (`Junicode-b` , 1.0, 0.)) {event} in
     let ib-note = embed-block-bottom ctx text-width (fun ctx -> read-block ctx inner) in
       line-break true true ctx (ib-title ++ inline-fil) +++ line-break true true ctx (inline-skip space-width ++ ib-note ++ inline-fil)
 end
