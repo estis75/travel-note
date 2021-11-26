@@ -1,0 +1,124 @@
+@require: gr
+@require: color
+@require: geom
+
+module Itinerary : sig
+  direct +itinerary : [block-text] block-cmd
+  % direct +interstation : [inline-text?; inline-text; inline-text] block-cmd
+  direct +interstation : [inline-text?; inline-text; inline-text; inline-text; block-text] block-cmd
+  direct +p: [inline-text] block-cmd
+  direct +notation: [block-text] block-cmd
+  direct +todo: [block-text] block-cmd
+end = struct
+
+let-block ctx +itinerary inner = 
+  let bb-inner = read-block ctx inner in
+    bb-inner
+
+% let-mutable bf <- {}
+% let-block ctx +interstation ?:from-station information to-station =
+%   let size = 12pt in
+%   let ctx =
+%     ctx |> set-font-size size 
+%         |> set-leading (size *' 1.2)
+%         |> set-paragraph-margin (size *' 0.2) (size *' 0.2)
+%   in
+%   let bb-from =
+%     let ib-from = 
+%       match from-station with
+%       | None -> !bf
+%       | Some(station) -> station
+%       in
+%     line-break false false ctx (read-inline ctx ib-from ++ inline-fil) in
+%   let bb-to =
+%     let ib-to = read-inline ctx to-station in
+%     let () = bf <- to-station in
+%     line-break false false ctx (ib-to ++ inline-fil) in
+%   let bb-info = 
+%     let ib-info = (read-inline ctx (embed-string(`| `))) ++ (read-inline ctx information) in
+%     line-break true true ctx ib-info in
+%   bb-from +++ bb-info +++ bb-to
+
+let-block ctx +interstation ?:from-station from-time to-station to-time information =
+  let ctx = ctx |> set-paragraph-margin 8pt 8pt in
+  let time-size = 12pt in
+  let station-size = 14pt in
+  let text-width = (get-text-width ctx) *' 0.9 in
+  let line-width = (get-text-width ctx) *' 0.05 in
+  let ctx-time =
+    ctx |> set-font-size time-size 
+        |> set-leading (time-size *' 1.2)
+        |> set-paragraph-margin 9pt 9pt in
+  let ctx-station =
+    ctx |> set-font-size station-size 
+        |> set-leading (station-size *' 1.2)
+        |> set-paragraph-margin 9pt 9pt in
+  let bb-from = % 出発駅
+    let ib-from = 
+      match from-station with
+      | None -> {} %!bf
+      | Some(station) -> station
+      in
+    line-break false false ctx (
+      read-inline ctx-time from-time 
+      ++ (inline-skip 10pt) 
+      ++ read-inline ctx-station ib-from ++ inline-fil
+    )
+  in
+  let bb-to = % 目的駅
+    let ib-to = to-station in
+    line-break false false ctx (
+      read-inline ctx-time to-time 
+      ++ (inline-skip 10pt) 
+      ++ read-inline ctx-station ib-to ++ inline-fil
+    )
+  in
+  let bb-info = % 乗車するやつの情報とか
+    let size = 11pt in
+    let ctx =
+      ctx |> set-font-size size 
+          |> set-leading (size *' 1.2)
+          |> set-paragraph-margin (size *' 0.2) (size *' 0.2)
+    in
+    let ib-info = embed-block-bottom ctx text-width (fun ctx -> read-block ctx information) in
+    let (_, height, _) = get-natural-metrics ib-info in
+    let line = stroke 0.5pt Color.black (Gr.line ((line-width *' 0.2), (0pt)) ((line-width *' 0.2), (height -' 2pt)))  in
+    let line-left = inline-graphics line-width height 0pt (fun pt -> ( [line;] |> List.map (fun el -> shift-graphics pt el))) in
+      line-break true true ctx (line-left ++ ib-info ++ inline-fil)
+  in
+  bb-from +++ bb-info +++ bb-to
+
+  let-block ctx +p inner =
+    let font-size-normal = get-font-size ctx in
+    let ctx =
+      ctx |> set-font-size font-size-normal 
+          |> set-paragraph-margin (font-size-normal *' 0.8) (font-size-normal *' 0.8)
+    in
+    let ib-inner = read-inline ctx inner in
+    let ib-parag = ib-inner ++ inline-fil in
+      form-paragraph ctx ib-parag
+
+  let-block ctx +notation inner =
+    let font-size-normal = get-font-size ctx in
+    let space-width = (get-text-width ctx) *' 0.05 in
+    let ctx =
+      ctx |> set-font-size font-size-normal 
+          |> set-paragraph-margin (font-size-normal *' 0.8) (font-size-normal *' 0.8)
+    in
+    let text-width = (get-text-width ctx) *' 0.9 in
+    let ib-title = read-inline (ctx |> set-font Latin (`Junicode-b` , 1.0, 0.)) {notation} in
+    let ib-note = embed-block-bottom ctx text-width (fun ctx -> read-block ctx inner) in
+      line-break true true ctx (ib-title ++ inline-fil) +++ line-break true true ctx (inline-skip space-width ++ ib-note ++ inline-fil)
+
+  let-block ctx +todo inner =
+    let font-size-normal = get-font-size ctx in
+    let space-width = (get-text-width ctx) *' 0.05 in
+    let ctx =
+      ctx |> set-font-size font-size-normal 
+          |> set-paragraph-margin (font-size-normal *' 0.8) (font-size-normal *' 0.8)
+    in
+    let text-width = (get-text-width ctx) *' 0.9 in
+    let ib-title = read-inline (ctx |> set-font Latin (`Junicode-b` , 1.0, 0.)) {todo} in
+    let ib-note = embed-block-bottom ctx text-width (fun ctx -> read-block ctx inner) in
+      line-break true true ctx (ib-title ++ inline-fil) +++ line-break true true ctx (inline-skip space-width ++ ib-note ++ inline-fil)
+end

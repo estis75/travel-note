@@ -1,0 +1,77 @@
+@import: traveljareport
+@import: itinerary
+@require: itemize
+
+document (|
+  title = {2021秋 北海道JRピンチケ旅行};
+  author = {\@estis_jk};
+  date = {2021/11/26-12/6};
+  show-title = true;
+  show-toc = false;
+|) '<
+  +section{11/26} <
+    +interstation?:({大和西大寺}){0857}{大阪難波}{0928} <
+      +Itinerary.p {
+        近鉄奈良線快速急行・神戸三宮行 3rd pf
+      }
+    >
+    +interstation?:({難波}){0945}{岸和田}{1007} <
+      +Itinerary.p {
+        南海特急サザン11号 和歌山市行 5th pf
+      }
+    >
+    +interstation?*{1009}{関西空港}{1028} <
+      +Itinerary.p {
+        南海線空港急行・関西空港行 1st pf
+      }
+    >
+    +interstation?:({KIX: Kansai International Airport}){12:00}{CTS: New Chitose Airport}{13:55}<
+      +Itinerary.p{
+        MM109, Peach
+      }
+      +Itinerary.notation<
+        +StdJaReport.p{
+          搭乗手続きは90分前〜30分前まで
+        }
+      >
+    >
+    +interstation?:({新千歳空港}){14:18}{札幌}{14:57}<
+      +Itinerary.p{
+        JR快速エアポート 143号 札幌行
+      }
+      +Itinerary.notation<
+        +StdJaReport.p{
+          本数はあるので大丈夫
+        }
+        +StdJaReport.p{
+          ゼミがあるのでちゃんと聞く
+        }
+      >
+    >
+    +interstation{15:00}{}{--:--}<
+      +todo<
+        +listing{
+          * 札幌市電を埋めたい
+        }
+      >
+    >
+    +StdJaReport.p {
+      ご飯とか観光とかは特に決めてない
+    }
+  >
+
+  % +section{11/27} <
+  %   +interstation?:({札幌}){0730}{南稚内}{1235} <
+  %     +Itinerary.p{
+  %       JR特急宗谷 稚内行 8th pf
+  %     }
+  %   >
+  %   +interstation?:({札幌}){0730}{稚内}{1235} <
+
+  %   >
+  %   +interstation?:({南稚内}){1718?}{稚内}{1744} <
+
+  %   >
+  % >
+  
+>
