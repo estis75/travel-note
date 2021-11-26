@@ -50,25 +50,81 @@ document (|
         }
       >
     >
-    +interstation?:({新千歳空港}){14:18}{札幌}{14:57}<
+    +interstation?:({新千歳空港}){14:30}{札幌}{1509}<
       +Itinerary.p{
-        JR快速エアポート 143号 札幌行
+        JR快速エアポート 145号 札幌行
       }
       +Itinerary.notation<
         +StdJaReport.p{
           本数はあるので大丈夫
         }
         +StdJaReport.p{
-          ゼミがあるのでちゃんと聞く
+          ゼミがあるのでちゃんと聞く ${\leftarrow} 聞けなかった
         }
       >
     >
-    +interstation{15:00}{}{--:--}<
+    +intermove<
       +todo<
         +listing{
           * 札幌市電を埋めたい
         }
       >
+      +Itinerary.event<
+        +StdJaReport.p{
+          ホテルのチェックインをした．
+          綺麗で駅に近い，爆アド．
+        }
+        +StdJaReport.p{
+          北海道庁舎と北海道大学を見た．
+        }
+        +StdJaReport.p{
+          道が綺麗でとてもよい．
+          全ての空間がデカイ．
+        }
+      >
+    >
+    +interstation?:({さっぽろ}){1633}{栄町}{1645}<
+      +Itinerary.p{
+        札幌市営東豊線・栄町行
+      }
+    >
+    +interstation?*{1654}{福住}{1720}<
+      +Itinerary.p{
+        札幌市営東豊線・福住行
+      }
+      +Itinerary.event <
+        +StdJaReport.p {
+          ロングシートの一席の空間（伝われ〜）が狭すぎる，乳幼児しか適切に使えないんじゃないか？
+          連結部の扉はかっこよくて好き
+          アレで安全性があるのかは知らないけど
+        }
+      >
+    >
+    +interstation?*{1726}{大通}{1738}<
+      +Itinerary.p{
+        札幌市営東豊線・栄町行
+      }
+    >
+    +interstation?*{1750}{麻生}{1801}<
+      +Itinerary.p{
+        札幌市営南北線・麻生行
+      }
+    >
+    +interstation?*{1802}{真駒内}{1830}<
+      +Itinerary.p{
+        札幌市営南北線・真駒内行
+      }
+    >
+    +interstation?*{1835}{大通}{1852}<
+      +Itinerary.p{
+        札幌市営南北線・麻生行
+      }
+    >
+    % 路面電車のやつ
+    +interstation?:({狸小路}){1906}{西４丁目}{1958}<
+      +Itinerary.p{
+        札幌市電・外回り
+      }
     >
     +StdJaReport.p {
       ご飯とか観光とかは特に決めてない
