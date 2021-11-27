@@ -105,26 +105,31 @@ let-block ctx +interstation ?:from-station ?:from-time ?:to-station ?:to-time in
         )
   in
   let bb-info = % 乗車するやつの情報とか
-    let size = 11pt in
+    let size = 12pt in
     let ctx =
       ctx |> set-font-size size 
           |> set-leading (size *' 1.2)
           |> set-paragraph-margin (size *' 0.2) (size *' 0.2)
     in
-    let ib-info = embed-block-bottom ctx text-width (fun ctx -> read-block ctx information) in
-    let (_, height, _) = get-natural-metrics ib-info in
-    let line = stroke 0.5pt Color.black (Gr.line ((line-width *' 0.2), (0pt)) ((line-width *' 0.2), (height -' 2pt)))  in
-    let line-left = inline-graphics line-width height 0pt (fun pt -> ( [line;] |> List.map (fun el -> shift-graphics pt el))) in
-      block-frame-breakable ctx (0pt, 0pt, 0pt, 0pt) HDecoSet.empty
-      (fun ctx -> line-break true true ctx (line-left ++ ib-info ++ inline-fil))
+    let linef = stroke 0.5pt Color.black in 
+    let line (x, y) w h d = [linef (Gr.line (x, y) (x, y+'h));] in
+    let deco _ _ _ _ = [] in
+      block-frame-breakable ctx (5pt, 0pt, 0pt, 0pt) HDecoSet.empty (
+        ( fun ctx ->
+          block-frame-breakable ctx (10pt, 0pt, 0pt, 10pt) (line, line, line, line)
+            (fun ctx -> block-skip 0pt +++ read-block ctx information)
+    %                   ^^^^^^^^^^^^^^ これをつかうと10ptの縦幅が生成できる（なんで？）
+    %                                  なので，上のblock-frame-breakableの一番右側，heightを10ptにしてるけど，
+    %                                  じつはもう少し幅が小さいほうが好みなのでどうしようね〜
+        )
+      )
   in
   bb-from +++ bb-info +++ bb-to
 
   let-block ctx +p inner =
     let font-size-normal = get-font-size ctx in
     let ctx =
-      ctx |> set-font-size font-size-normal 
-          |> set-paragraph-margin (font-size-normal *' 0.8) (font-size-normal *' 0.8)
+      ctx |> set-paragraph-margin (font-size-normal *' 0.8) (font-size-normal *' 0.8)
     in
     let ib-inner = read-inline ctx inner in
     let ib-parag = ib-inner ++ inline-fil in
@@ -134,43 +139,45 @@ let-block ctx +interstation ?:from-station ?:from-time ?:to-station ?:to-time in
     let font-size-normal = get-font-size ctx in
     let space-width = (get-text-width ctx) *' 0.05 in
     let ctx =
-      ctx |> set-font-size font-size-normal 
-          |> set-paragraph-margin (font-size-normal *' 0.8) (font-size-normal *' 0.8)
+      ctx |> set-paragraph-margin (font-size-normal *' 0.8) (font-size-normal *' 0.8)
     in
     let text-width = (get-text-width ctx) *' 0.9 in
     let ib-title = read-inline (ctx |> set-font Latin (`Junicode-b` , 1.0, 0.)) {notation} in
     let ib-note = embed-block-bottom ctx text-width (fun ctx -> read-block ctx inner) in
-      line-break true false ctx (ib-title ++ inline-fil) +++ line-break false true ctx (inline-skip space-width ++ ib-note ++ inline-fil)
+      line-break true false ctx (ib-title ++ inline-fil)
+       +++ block-frame-breakable ctx (10pt, 0pt, 5pt, 0pt) HDecoSet.empty
+        (fun ctx -> line-break false true ctx (ib-note ++ inline-fil))
 
   let-block ctx +todo inner =
     let font-size-normal = get-font-size ctx in
     let space-width = (get-text-width ctx) *' 0.05 in
     let ctx =
-      ctx |> set-font-size font-size-normal 
-          |> set-paragraph-margin (font-size-normal *' 0.8) (font-size-normal *' 0.8)
+      ctx |> set-paragraph-margin (font-size-normal *' 0.8) (font-size-normal *' 0.8)
     in
     let text-width = (get-text-width ctx) *' 0.9 in
     let ib-title = read-inline (ctx |> set-font Latin (`Junicode-b` , 1.0, 0.)) {todo} in
     let ib-note = embed-block-bottom ctx text-width (fun ctx -> read-block ctx inner) in
-      line-break true false ctx (ib-title ++ inline-fil) +++ line-break false true ctx (inline-skip space-width ++ ib-note ++ inline-fil)
+      line-break true false ctx (ib-title ++ inline-fil)
+       +++ block-frame-breakable ctx (10pt, 0pt, 5pt, 0pt) HDecoSet.empty
+        (fun ctx -> line-break false true ctx (ib-note ++ inline-fil))
 
   let-block ctx +event inner =
     let font-size-normal = get-font-size ctx in
     let space-width = (get-text-width ctx) *' 0.05 in
     let ctx =
-      ctx |> set-font-size font-size-normal 
-          |> set-paragraph-margin (font-size-normal *' 0.8) (font-size-normal *' 0.8)
+      ctx |> set-paragraph-margin (font-size-normal *' 0.8) (font-size-normal *' 0.8)
     in
     let text-width = (get-text-width ctx) *' 0.9 in
     let ib-title = read-inline (ctx |> set-font Latin (`Junicode-b` , 1.0, 0.)) {event} in
     let ib-note = embed-block-bottom ctx text-width (fun ctx -> read-block ctx inner) in
-      line-break true false ctx (ib-title ++ inline-fil) +++ line-break false true ctx (inline-skip space-width ++ ib-note ++ inline-fil)
+      line-break true false ctx (ib-title ++ inline-fil)
+       +++ block-frame-breakable ctx (10pt, 0pt, 5pt, 0pt) HDecoSet.empty
+        (fun ctx ->  line-break false true ctx (ib-note ++ inline-fil))
     
   let-block ctx +cost clist =
     % left: (block-boxes, int)
-    let font-size-normal = 12pt in
-    let ctx = ctx |> set-font-size font-size-normal 
-          |> set-paragraph-margin (font-size-normal *' 0.8) (font-size-normal *' 0.8) in
+    let font-size-normal = get-font-size ctx in
+    let ctx = ctx |> set-paragraph-margin (font-size-normal *' 0.8) (font-size-normal *' 0.8) in
     let text-width = (get-text-width ctx) in
     let spacing = 10pt in
     let title-width = 100pt in
