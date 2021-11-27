@@ -10,17 +10,17 @@ document (|
   show-toc = false;
 |) '<
   +section{11/26} <
-    +interstation?:({大和西大寺}){0857}{大阪難波}{0928} <
+    +interstation?:({大和西大寺})?:({0857})?:({大阪難波})?:({0928}) <
       +Itinerary.p {
         近鉄奈良線快速急行・神戸三宮行 3rd pf
       }
     >
-    +interstation?:({難波}){0939}{関西空港}{1028} <
+    +interstation?:({難波})?:({0939})?:({関西空港})?:({1028}) <
       +Itinerary.p {
         南海線空港急行・関西空港行 2nd pf
       }
     >
-    +interstation?:({KIX: Kansai International Airport}){12:00}{CTS: New Chitose Airport}{13:55}<
+    +interstation?:({KIX: Kansai International Airport})?:({12:00})?:({CTS: New Chitose Airport})?:({13:55})<
       +Itinerary.p{
         MM109, Peach
       }
@@ -50,7 +50,7 @@ document (|
         }
       >
     >
-    +interstation?:({新千歳空港}){14:30}{札幌}{1509}<
+    +interstation?:({新千歳空港})?:({14:30})?:({札幌})?:({1509})<
       +Itinerary.p{
         JR快速エアポート 145号 札幌行
       }
@@ -83,12 +83,12 @@ document (|
         }
       >
     >
-    +interstation?:({さっぽろ}){1633}{栄町}{1645}<
+    +interstation?:({さっぽろ})?:({1633})?:({栄町})?:({1645})<
       +Itinerary.p{
         札幌市営東豊線・栄町行
       }
     >
-    +interstation?*{1654}{福住}{1720}<
+    +interstation?*?:({1654})?:({福住})?:({1720})<
       +Itinerary.p{
         札幌市営東豊線・福住行
       }
@@ -100,27 +100,27 @@ document (|
         }
       >
     >
-    +interstation?*{1726}{大通}{1738}<
+    +interstation?*?:({1726})?:({大通})?:({1738})<
       +Itinerary.p{
         札幌市営東豊線・栄町行
       }
     >
-    +interstation?*{1750}{麻生}{1801}<
+    +interstation?*?:({1750})?:({麻生})?:({1801})<
       +Itinerary.p{
         札幌市営南北線・麻生行
       }
     >
-    +interstation?*{1802}{真駒内}{1830}<
+    +interstation?*?:({1802})?:({真駒内})?:({1830})<
       +Itinerary.p{
         札幌市営南北線・真駒内行
       }
     >
-    +interstation?*{1835}{大通}{1852}<
+    +interstation?*?:({1835})?:({大通})?:({1852})<
       +Itinerary.p{
         札幌市営南北線・麻生行
       }
     >
-    +interstation?:({狸小路}){1906}{西４丁目}{1958}<
+    +interstation?:({狸小路})?:({1906})?:({西４丁目})?:({1958})<
       +Itinerary.p{
         札幌市電・外回り
       }
@@ -174,12 +174,12 @@ document (|
       6時20分起床，着替えと準備を済ませて朝食へ．
       0650頃宿発．
     }
-    +interstation?:({札幌}){0730}{南稚内}{1235} <
+    +interstation?:({札幌})?:({0730})?:({南稚内})?:({1235}) <
       +Itinerary.p{
         JR特急宗谷 稚内行 8th pf
       }
     > % 打ち消し線の実装
-    +interstation?:({札幌}){0749}{旭川}{0914} <
+    +interstation?:({札幌})?:({0749})?:({旭川})?:({0914}) <
       +Itinerary.p{
         JR特急ライラック３号 旭川行 7th pf
       }
@@ -204,30 +204,75 @@ document (|
         }
       >
     >
-    +interstation?*{0958}{稚内}{1400?} <
+    +interstation?*?:({0958})?:({稚内})?:({1400?}) <
       +Itinerary.p{
         臨時列車　稚内行
       }
       +Itinerary.p{
-        旭川始発，特急宗谷の代走．停車駅は特急宗谷と同じ．機材はキハ 54 - 501 ．トップナンバー．
+        旭川始発，特急宗谷の代走．停車駅は特急宗谷と同じ．機材はキハ 54 - 501, 509 ．トップナンバー．
       }
       +Itinerary.notation <
         +StdJaReport.p {
           仮に 30 分巻いてくれることがあれば，南稚内で降りて宗谷岬まで行ける可能性がある．
         }
       >
+      +interstation?*?*?:({和寒})?:({1037}) <
+        +p{}
+      >
+      +interstation?*?:({1037})?:({士別})?:({1049}) <
+        +p{}
+      >
+      +interstation?*?:({1049})?:({名寄})?:({1108}) <
+        +p{}
+      >
+      +interstation?*?:({1113})?:({美深})?:({1131}) <
+        +p{}
+      >
+      +interstation?*?:({1132})?:({音威子府})?:({1158}) <
+        +p{}
+      >
+      +interstation?*?:({1159})?:({音威子府})?:({1158}) <
+        +p{}
+      >
+      +interstation?*?:({1158})?:({天塩中川})?:({1240}) <
+        +Itinerary.event<
+          +StdJaReport.p{ 
+            筬島 - 佐久間で鹿２体と衝突，安全確認．
+            熊がでる恐れがあるので次の佐久で運転停車し車体の確認予定．
+          }
+        >
+        +interstation?*?*?:({（佐久）})?:({1228}) <
+          +p{}
+        >
+        +interstation?*?:({1232})?*?* <
+          +p{}
+        >
+      >
+      +interstation?*?:({1240})?:({幌延})?:({1326}) <
+        +interstation?*?*?:({（南幌延　南側）})?:({1307}) <
+          +p{}
+        >
+        +Itinerary.event<
+          +StdJaReport.p{ 
+            鹿と衝突，安全確認．
+          }
+        >
+        +interstation?*?:({1318})?*?* <
+          +p{}
+        >
+      >
     >
-    +interstation?:({稚内駅前ターミナル}){1320}{宗谷岬}{1410}<
+    +interstation?:({稚内駅前ターミナル})?:({1320})?:({宗谷岬})?:({1410}) <
       +Itinerary.p {
         天北宗谷岬線・上り　音威子府方面行
       }
     >
-    +interstation?*{1455}{稚内駅前ターミナル}{1553}<
+    +interstation?*?:({1455})?:({稚内駅前ターミナル})?:({1553}) <
       +Itinerary.p {
         天北宗谷岬線・下り　稚内方面行
       }
     >
-    +interstation?:({南稚内}){1744}{札幌}{2257} <
+    +interstation?:({南稚内})?:({1744})?:({札幌})?:({2257}) <
       +Itinerary.p {
         特急宗谷・札幌行
       }
