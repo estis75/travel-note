@@ -12,7 +12,7 @@ type consumption = (|
 
 module Itinerary : sig
   direct +itinerary : [block-text] block-cmd
-  direct +interstation : [inline-text?; inline-text; inline-text; inline-text; block-text] block-cmd
+  direct +interstation : [inline-text?; inline-text?; inline-text?; inline-text?; block-text] block-cmd
   direct +intermove : [block-text] block-cmd
   direct +p: [inline-text] block-cmd
   direct +notation: [block-text] block-cmd
@@ -50,7 +50,7 @@ let-block ctx +intermove information =
   in
   bb-info
 
-let-block ctx +interstation ?:from-station from-time to-station to-time information =
+let-block ctx +interstation ?:from-station ?:from-time ?:to-station ?:to-time information =
   let ctx = ctx |> set-paragraph-margin 8pt 8pt in
   let time-size = 12pt in
   let station-size = 14pt in
@@ -65,24 +65,44 @@ let-block ctx +interstation ?:from-station from-time to-station to-time informat
         |> set-leading (station-size *' 1.2)
         |> set-paragraph-margin 9pt 9pt in
   let bb-from = % 出発駅
-    let ib-from = 
-      match from-station with
-      | None -> {} %!bf
-      | Some(station) -> station
-      in
-    line-break true false ctx (
-      read-inline ctx-time from-time 
-      ++ (inline-skip 10pt) 
-      ++ read-inline ctx-station ib-from ++ inline-fil
-    )
+    match (from-station, from-time) with
+    | (None, None) -> block-nil
+    | (from-station, from-time) ->
+        let ib-from = 
+          match from-station with
+          | None -> {} %!bf
+          | Some(station) -> station
+          in
+        let ib-from-time = 
+          match from-time with
+          | None -> {} %!bf
+          | Some(time) -> time
+          in
+        line-break true false ctx (
+          read-inline ctx-time ib-from-time 
+          ++ (inline-skip 10pt) 
+          ++ read-inline ctx-station ib-from ++ inline-fil
+        )
   in
   let bb-to = % 目的駅
-    let ib-to = to-station in
-    line-break false true ctx (
-      read-inline ctx-time to-time 
-      ++ (inline-skip 10pt) 
-      ++ read-inline ctx-station ib-to ++ inline-fil
-    )
+    match (to-station, to-time) with
+    | (None, None) -> block-nil
+    | (to-station, to-to-time) ->
+        let ib-to = 
+          match to-station with
+          | None -> {} %!bf
+          | Some(station) -> station
+          in
+        let ib-to-time = 
+          match to-time with
+          | None -> {} %!bf
+          | Some(time) -> time
+          in
+        line-break false true ctx (
+          read-inline ctx-time ib-to-time 
+          ++ (inline-skip 10pt) 
+          ++ read-inline ctx-station ib-to ++ inline-fil
+        )
   in
   let bb-info = % 乗車するやつの情報とか
     let size = 11pt in
