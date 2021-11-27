@@ -4,6 +4,7 @@
 @import: 2021-11-26-hokkaido-days/1st
 @import: 2021-11-26-hokkaido-days/2nd
 @import: 2021-11-26-hokkaido-days/3rd
+@import: 2021-11-26-hokkaido-days/4th
 
 document (|
   title = {2021秋 北海道JRピンチケ旅行};
@@ -16,4 +17,5 @@ document (|
   #day1;
   #day2;
   #day3;
+  #day4;
 >

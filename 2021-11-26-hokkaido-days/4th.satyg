@@ -1,0 +1,59 @@
+@import: ../traveljareport
+@import: ../itinerary
+@require: itemize
+
+let day4 = '<
+  +section{11/29} <
+    +interstation?:({札幌})?:({0635})?:({滝川})?:({0727}) <
+      +Itinerary.p{
+        JR特急ライラック１号 旭川行 8th pf
+      }
+    > 
+    +interstation?*?:({0733})?:({富良野})?:({0842}) <
+      +Itinerary.p{
+        JR根室本線　富良野行
+      }
+    > 
+    +interstation?*?:({0909})?:({滝川})?:({1012}) <
+      +Itinerary.p{
+        JR根室本線快速・滝川行
+      }
+    > 
+    +interstation?*?:({1038})?:({岩見沢})?:({1117}) <
+      +Itinerary.p{
+        JR函館本線・岩見沢行
+      }
+    > 
+    +interstation?*?:({1245})?:({苫小牧})?:({1409}) <
+      +Itinerary.p{
+        JR室蘭本線・苫小牧行
+      }
+    > 
+    +interstation?*?:({1417})?:({東室蘭})?:({1455}) <
+      +Itinerary.p{
+        JR特急北斗１４号・函館行
+      }
+    > 
+    +interstation?*?:({1500})?:({室蘭})?:({1512}) <
+      +Itinerary.p{
+        JR室蘭本線・室蘭行
+      }
+    > 
+    +interstation?*?*?*?* <
+      +p {
+        ぶらぶらやりたいことをやればよい
+      }
+    >
+    % 終電
+    +interstation?:({室蘭})?:({2039})?:({東室蘭})?:({2051}) <
+      +Itinerary.p{
+        JR室蘭本線・東室蘭行
+      }
+    > 
+    +interstation?*?:({2108})?:({札幌})?:({2237}) <
+      +Itinerary.p{
+        JR特急北斗２１号・札幌行
+      }
+    > 
+  >
+>
