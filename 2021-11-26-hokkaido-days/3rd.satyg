@@ -1,0 +1,48 @@
+@import: ../traveljareport
+@import: ../itinerary
+@require: itemize
+
+let day3 = '<
+  +section{11/27} <
+    +interstation?:({札幌})?:({0635})?:({深川})?:({0740}) <
+      +Itinerary.p{
+        JR特急ライラック１号 旭川行 8th pf
+      }
+    > 
+    +interstation?*?:({0759})?:({留萌})?:({0855}) <
+      +Itinerary.p{
+        JR留萌本線 留萌行
+      }
+    > 
+    +interstation?*?:({0904})?:({深川})?:({1000}) <
+      +Itinerary.p{
+        JR留萌本線 深川行
+      }
+    > 
+    +interstation?*?:({1011})?:({旭川})?:({1041}) <
+      +Itinerary.p{
+        JR函館本線 旭川行
+      }
+    > 
+    +interstation?*?:({1133})?:({富良野})?:({1242}) <
+      +Itinerary.p{
+        JR富良野線 富良野行
+      }
+    > 
+    +interstation?*?:({1419})?:({東鹿越})?:({1504}) <
+      +Itinerary.p{
+        JR根室本線 東鹿越行
+      }
+    > 
+    +interstation?*?:({1513})?:({新得})?:({1621}) <
+      +Itinerary.p{
+        JR根室本線 東鹿越行（代行バス）
+      }
+    > 
+    +interstation?*?:({1818})?:({札幌})?:({2028}) <
+      +Itinerary.p{
+        JR特急あおぞら１０号 札幌行
+      }
+    > 
+  >
+>
