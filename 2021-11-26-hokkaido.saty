@@ -169,18 +169,57 @@ document (|
     ];
   >
 
-  % +section{11/27} <
-  %   +interstation?:({札幌}){0730}{南稚内}{1235} <
-  %     +Itinerary.p{
-  %       JR特急宗谷 稚内行 8th pf
-  %     }
-  %   >
-  %   +interstation?:({札幌}){0730}{稚内}{1235} <
+  +section{11/27} <
+    +StdJaReport.p {
+      6時20分起床，着替えと準備を済ませて朝食へ．
+      0650頃宿発．
+    }
+    +interstation?:({札幌}){0730}{南稚内}{1235} <
+      +Itinerary.p{
+        JR特急宗谷 稚内行 8th pf
+      }
+    > % 打ち消し線の実装
+    +interstation?:({札幌}){0749}{南稚内}{0914} <
+      +Itinerary.p{
+        JR特急ライラック３号 旭川行 7th pf
+      }
+      +Itinerary.event <
+        +StdJaReport.p {
+          「特急宗谷は車両基地の点検に時間を要したため旭川止まりに」
+        }
+        +StdJaReport.p {
+          いやぁ大変ですね，困った
+        }
+        +StdJaReport.p {
+          「特急ライラックが旭川に先着し，旭川から先は特別列車稚内行がございます」
+        }
+        +StdJaReport.p {
+          ふむふむ，困った
+        }
+      >
+      +Itinerary.event <
+        +StdJaReport.p {
+          （滝川〜旭川頃）運用としては臨時の特急，車両は普通列車，２両編成の見込み，
+          発射は旭川駅７番ホームとのこと．
+        }
+      >
+    >
+    +interstation?:({稚内駅前ターミナル}){1320}{宗谷岬}{1410}<
+      +Itinerary.p {
+        天北宗谷岬線・上り　音威子府方面行
+      }
+    >
+    +interstation?*{1455}{稚内駅前ターミナル}{1553}<
+      +Itinerary.p {
+        天北宗谷岬線・下り　稚内方面行
+      }
+    >
+    +interstation?:({南稚内}){1744}{札幌}{2257} <
+      +Itinerary.p {
+        特急宗谷・札幌行
+      }
 
-  %   >
-  %   +interstation?:({南稚内}){1718?}{稚内}{1744} <
-
-  %   >
-  % >
+    >
+  >
   
 >
