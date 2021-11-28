@@ -197,7 +197,7 @@ let-block ctx +interstation ?:from-station ?:from-time ?:to-station ?:to-time in
     line-break true true ctx (read-inline (ctx |> set-font-size 14pt) {合計金額} ++ inline-fil)
     +++ line-break true true ctx (
       (embed-block-top ctx title-width (fun ctx -> line-break true true ctx (read-inline ctx {obj} ++ inline-fil))) ++ inline-skip spacing 
-        ++ (embed-block-top ctx cost-width (fun ctx -> line-break true true ctx (inline-fil ++ read-inline ctx {cost}))) ++ inline-skip spacing
+        ++ (embed-block-top ctx cost-width (fun ctx -> line-break true true ctx (read-inline ctx {cost} ++ inline-fil))) ++ inline-skip spacing
         ++ (embed-block-top ctx (text-width -' title-width -' cost-width -' spacing *' 2.) (fun ctx -> line-break true true ctx (read-inline ctx {option} ++ inline-fil)))
     )
     +++ data
