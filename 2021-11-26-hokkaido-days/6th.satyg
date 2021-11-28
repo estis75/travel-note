@@ -1,0 +1,18 @@
+@import: ../traveljareport
+@import: ../itinerary
+@require: itemize
+
+let day6 = '<
+  +section{12/01} <
+    +interstation?:({函館バスセンター})?:({0644})?:({江差ターミナル})?:({0920}) <
+      +Itinerary.p {
+        函館バス　函館江差線　６１０系統　江差ターミナル行
+      }
+    >
+    +interstation?*?:({1100})?:({函館バスセンター})?:({1338}) <
+      +Itinerary.p {
+        函館バス　函館江差線　６１０系統　函館バスセンター行
+      }
+    >
+  >
+>
