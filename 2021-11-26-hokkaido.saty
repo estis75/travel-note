@@ -11,7 +11,7 @@ document (|
   author = {\@estis_jk};
   date = {2021/11/26-12/6};
   show-title = true;
-  show-toc = false;
+  show-toc = true;
 |) 
 '<
   #day1;
