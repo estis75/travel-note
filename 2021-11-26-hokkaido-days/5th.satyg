@@ -1,0 +1,41 @@
+@import: ../traveljareport
+@import: ../itinerary
+@require: itemize
+
+let day5 = '<
+  +section{11/30} <
+    +interstation?:({札幌})?:({1012})?:({小樽})?:({1046}) <
+      +Itinerary.p{
+        JR快速エアポート95号・小樽行
+      }
+    >
+    +interstation?*?:({1053})?:({倶知安})?:({1212}) <
+      +Itinerary.p{
+        JR函館本線・倶知安行
+      }
+    >
+    +interstation?*?:({1235})?:({長万部})?:({1435}) <
+      +Itinerary.p{
+        JR函館本線・長万部行
+      }
+    >
+    +interstation?*?:({1435})?:({森})?:({1516}) <
+      +Itinerary.p{
+        JR特急北斗12号・函館行
+      }
+    >
+    +interstation?*?:({1607})?:({函館})?:({1742}) <
+      +Itinerary.p{
+        JR函館本線・函館行
+      }
+    >
+    +Itinerary.notation <
+      +listing{
+        * 函館市電を埋める
+        * 函館あたりの周遊きっぷ的なのがあるはずなのでそれをさがす
+        * 宿は快活でよくない？
+        * 函館山に行く
+      }
+    >
+  >
+>
