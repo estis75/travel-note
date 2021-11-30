@@ -1,0 +1,20 @@
+@import: ../traveljareport
+@import: ../itinerary
+@require: itemize
+
+let day7 = '<
+  +section{12/02} <
+    +interstation?:({函館})?*?:({札幌})?* <
+      +Itinerary.p {
+        未定
+      }
+      +notation <
+        +listing {
+          * 帰ったら洗濯をしなきゃいけない
+          * 早く帰るメリットとして，そのあと遊びにいけるがある
+          * どれだけおそくともこの日までにはバスの予約をとる
+        }
+      >
+    >
+  >
+>

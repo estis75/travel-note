@@ -1,0 +1,44 @@
+@import: ../traveljareport
+@import: ../itinerary
+@require: itemize
+
+let day8 = '<
+  +section{12/03} <
+    +interstation?:({札幌})?:({0750})?:({沼ノ端})?:({0903}) <
+      +Itinerary.p {
+        JR千歳線・苫小牧行
+      }
+    >
+    +interstation?:({沼ノ端駅北口・沼ノ端駅})?:({0931})?:({静内（新ひだか町）})?:({1135}) <
+      +Itinerary.p {
+        道南バス　静内線・静内（新ひだか町）行
+      }
+    >
+    +interstation?*?:({1155})?:({浦河町役場})?:({1305}) <
+      +Itinerary.p {
+        道南バス　浦河線・老人ホーム行
+      }
+    >
+    +interstation?*?:({1321})?:({様似})?:({1357}) <
+      +Itinerary.p {
+        JR北海道バス　日勝線・様似営業所行
+      }
+    >
+    +notation <
+      +listing {
+        * 様似駅の駅舎を見る
+        * 役場とかもみたい
+      }
+    >
+    +interstation?*?:({1600})?:({浦河町役場})?:({1634}) <
+      +Itinerary.p {
+        JR北海道バス　日勝線・向別（浦河町）行
+      }
+    >
+    +interstation?*?:({1640})?:({札幌駅})?:({2020}) <
+      +Itinerary.p {
+        道南バス　ペガサス号・札幌行
+      }
+    >
+  >
+>
