@@ -1,0 +1,28 @@
+@import: ../traveljareport
+@import: ../itinerary
+@require: itemize
+
+let day9 = '<
+  +section{12/04} <
+    +interstation?:({札幌})?:({0648})?:({釧路})?:({1058}) <
+      +Itinerary.p {
+        JR特急あおぞら１号・釧路行
+      }
+    >
+    +interstation?*?:({1112})?:({根室})?:({1322}) <
+      +Itinerary.p {
+        JR快速ノサップ・根室行
+      }
+    >
+    +interstation?*?:({1612})?:({釧路})?:({1846}) <
+      +Itinerary.p {
+        JR根室本線・釧路行
+      }
+    >
+    +interstation?*?:({1856})?:({網走})?:({2203}) <
+      +Itinerary.p {
+        JR釧網本線・網走行
+      }
+    >
+  >
+>

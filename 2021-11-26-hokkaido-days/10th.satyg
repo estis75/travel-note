@@ -1,0 +1,16 @@
+@import: ../traveljareport
+@import: ../itinerary
+@require: itemize
+
+let day10 = '<
+  +section{12/05} <
+    +p{
+      未定，網走監獄とか流氷とか，見たいやつが終わったら帰ってくる．
+    }
+    +interstation?:({網走})?:({1725})?:({札幌})?:({2253}) <
+      +Itinerary.p{
+        JR特急オホーツク４号・札幌行
+      }
+    >
+  >
+>

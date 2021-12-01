@@ -1,0 +1,16 @@
+@import: ../traveljareport
+@import: ../itinerary
+@require: itemize
+
+let day11 = '<
+  +section{12/06} <
+    +p{
+      未定
+    }
+    +interstation?:({新千歳空港})?:({1800})?:({関西国際空港})?:({2025}) <
+      +Itinerary.p{
+        peach 
+      }
+    >
+  >
+>
