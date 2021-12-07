@@ -41,6 +41,8 @@ module Itinerary : sig
   direct +todo: [block-text] block-cmd
   direct +event: [block-text] block-cmd
   direct +cost: [consumption list] block-cmd
+  direct +distance: [int] block-cmd
+  direct +conclusion: [bool; bool; block-text] block-cmd
 end = struct
 
 let-block ctx +itinerary inner = 
@@ -196,6 +198,7 @@ let-block ctx +interstation ?:from-station ?:from-time ?:to-station ?:to-time in
        +++ block-frame-breakable ctx (10pt, 0pt, 5pt, 0pt) HDecoSet.empty
         (fun ctx ->  line-break false true ctx (ib-note ++ inline-fil))
     
+  let-mutable ref-cost <- [] 
   let-block ctx +cost clist =
     % left: (block-boxes, int)
     let font-size-normal = get-font-size ctx in
@@ -216,6 +219,7 @@ let-block ctx +interstation ?:from-station ?:from-time ?:to-station ?:to-time in
           (left-data +++ (toline ctx data), left-cost + data#cost)
       ) (block-nil, 0)
     in
+    let () = ref-cost <- cost :: !ref-cost in 
     line-break true true ctx (read-inline (ctx |> set-font-size 14pt) {合計金額} ++ inline-fil)
     +++ line-break true true ctx (
       (embed-block-top ctx title-width (fun ctx -> line-break true true ctx (read-inline ctx {obj} ++ inline-fil))) ++ inline-skip spacing 
@@ -228,4 +232,101 @@ let-block ctx +interstation ?:from-station ?:from-time ?:to-station ?:to-time in
         ++ (embed-block-top ctx cost-width (fun ctx -> line-break true true ctx (inline-fil ++ read-inline ctx (embed-string ((arabic cost) ^ `円` ))))) ++ inline-skip spacing
         ++ inline-fil
     )
+
+  let-mutable ref-distance <- [] 
+  let-block ctx +distance fromto =
+    let () = ref-distance <- fromto :: !ref-distance in 
+    block-nil
+
+  let-block ctx +conclusion show-cost-sum show-distance-sum inner = 
+    let texts = read-block ctx inner in 
+    let font-size-normal = get-font-size ctx in
+    let ctx = ctx |> set-paragraph-margin (font-size-normal *' 0.8) (font-size-normal *' 0.8) in
+    let text-width = (get-text-width ctx) in
+    let spacing = 10pt in
+    let title-width = 100pt in
+    let cost-width = 60pt in
+    let toline ctx index cost distance = 
+      line-break true true ctx (
+          (embed-block-top ctx title-width (fun ctx -> line-break true true ctx (read-inline ctx (embed-string (`Day ` ^ (arabic index))) ++ inline-fil))) ++ inline-skip spacing 
+          ++ (
+            if show-cost-sum then
+              (embed-block-top ctx cost-width (fun ctx -> line-break true true ctx (inline-fil ++ read-inline ctx (embed-string ((arabic cost) ^ `円` ))))) ++ inline-skip spacing
+            else
+              inline-nil
+          )
+          ++ (
+            if show-distance-sum then
+              (embed-block-top ctx cost-width (fun ctx -> line-break true true ctx (inline-fil ++ read-inline ctx (embed-string ((arabic distance) ^ #` km` ))))) ++ inline-skip spacing
+            else
+              inline-nil
+          )
+          ++ inline-fil
+      )
+    in
+    let cost-info = if show-cost-sum || show-distance-sum then (
+      let-mutable index <- 0 in
+      let data-info = (
+        if show-cost-sum && show-distance-sum then
+          let-rec data-info costs distances = 
+            match (costs, distances) with
+            | (ct :: afct, dt :: afdt) -> (ct, dt) :: (data-info afct afdt) 
+            | _ -> []
+          in
+          data-info !ref-cost !ref-distance
+        else
+          if show-cost-sum || show-distance-sum then
+            if show-cost-sum then
+              !ref-cost |> List.reverse |> List.map (fun c -> (c, 0))
+            else 
+              !ref-distance |> List.reverse |> List.map (fun d -> (0, d))
+          else
+            []
+      )
+      in
+      let (data, cost-sum, distance-sum) = data-info |> List.fold-left (
+          fun (left-data, left-cost, left-distance) (cost, distance) -> (
+            let () = index <- !index + 1 in
+            (left-data +++ (toline ctx !index cost distance), left-cost + cost, left-distance + distance)
+          )
+      ) (block-nil, 0, 0)
+      in
+      line-break true true ctx (read-inline (ctx |> set-font-size 14pt) {移動の記録} ++ inline-fil)
+      +++ line-break true true ctx (
+        (embed-block-top ctx title-width (fun ctx -> line-break true true ctx (read-inline ctx {obj} ++ inline-fil))) ++ inline-skip spacing 
+          ++ (
+            if show-cost-sum then
+              (embed-block-top ctx cost-width (fun ctx -> line-break true true ctx (read-inline ctx {cost} ++ inline-fil))) ++ inline-skip spacing
+            else
+              inline-nil
+          ) ++ (
+            if show-distance-sum then
+              (embed-block-top ctx cost-width (fun ctx -> line-break true true ctx (read-inline ctx {distance} ++ inline-fil))) ++ inline-skip spacing
+            else
+              inline-nil
+          )
+          ++ inline-fil 
+      )
+      +++ data
+      +++ line-break true true ctx (
+        (embed-block-top ctx title-width (fun ctx -> line-break true true ctx (read-inline ctx {合計} ++ inline-fil))) ++ inline-skip spacing 
+          ++ (
+            if show-cost-sum then
+              (embed-block-top ctx cost-width (fun ctx -> line-break true true ctx (inline-fil ++ read-inline ctx (embed-string ((arabic cost-sum) ^ `円` ))))) ++ inline-skip spacing
+            else
+              inline-nil
+          ) 
+          ++ (
+            if show-distance-sum then
+              (embed-block-top ctx cost-width (fun ctx -> line-break true true ctx (inline-fil ++ read-inline ctx (embed-string ((arabic distance-sum) ^ #` km` ))))) ++ inline-skip spacing
+            else
+              inline-nil
+          ) 
+          ++ inline-fil
+      )
+    )
+    else 
+      block-nil 
+    in 
+    texts +++ cost-info
 end

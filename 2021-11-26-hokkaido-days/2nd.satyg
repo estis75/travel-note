@@ -198,5 +198,6 @@ let day2 = '<
         opt = {}
       |);
     ];
+    +distance (699);
   >
 >
