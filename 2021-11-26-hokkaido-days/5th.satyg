@@ -63,43 +63,52 @@ let day5 = '<
         title = {小樽土産};
         cost = 1053;
         opt = {ビールと小春六花コラボクリアファイル，記念硬券};
+        is-train = false;
       |);
       (|
         title = {お昼ごはん＠倶知安};
         cost = 1620;
         opt = {とてもおいしかった，今度はスキーしに来たい};
+        is-train = false;
       |);
       (|
         title = {8日目札幌へ帰るバス};
         cost = 3250;
         opt = {予約できてよかった〜};
+        is-train = true;
       |);
       (|
         title = {明日のバス周遊券};
         cost = 3000;
         opt = {};
+        is-train = true;
       |);
       (|
         title = {ホテル２泊};
         cost = 7850;
         opt = {快活でよかったという主張もある};
+        is-train = false;
       |);
       (|
         title = {HOKKAIDO LOVE ! ６日間周遊パス};
         cost = 12000;
-        opt = {2枚目}
+        opt = {2枚目};
+        is-train = true;
       |);
       (|
         title = {晩ごはん};
         cost = 1298;
-        opt = {お寿司}
+        opt = {お寿司};
+        is-train = false;
       |);
       (|
         title = {晩酌と夜食};
         cost = 787;
-        opt = {}
+        opt = {};
+        is-train = false;
       |);
     ];
     +distance (285);
+    +estimated-train-cost ((5940 + 1150));
   >
 >

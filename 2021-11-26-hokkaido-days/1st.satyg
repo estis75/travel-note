@@ -133,35 +133,48 @@ let day1 = '<
       (|
         title = {ICOCA};
         cost = 3000;
-        opt = {帰りの分のことを考えて: ここでは1500円}
+        opt = {帰りの分のことを考えて: ここでは1500円};
+        is-train = true;
+      |);
+      (|
+        title = {飛行機代};
+        cost = 7760 + 690;
+        opt = {この旅行前に支払い済み};
+        is-train = true;
       |);
       (|
         title = {KITACA};
         cost = 2000;
-        opt = {deposit: 500円}
+        opt = {deposit: 500円};
+        is-train = true;
       |);
       (|
         title = {HOKKAIDO LOVE ! ６日間周遊パス};
         cost = 12000;
-        opt = {}
+        opt = {};
+        is-train = true;
       |);
       (|
         title = {ホテル 10 日分};
         cost = 11800;
-        opt = {2000円 ${\times} 10のクーポン取得}
+        opt = {2000円 ${\times} 10のクーポン取得};
+        is-train = false;
       |);
       (|
         title = {札幌市交通局 地下鉄専用１日乗車券};
         cost = 830;
-        opt = {}
+        opt = {};
+        is-train = true;
       |);
       (|
         title = {ごはん};
         cost = 3300 - 3300;
-        opt = {クーポン2枚使用}
+        opt = {クーポン4枚使用};
+        is-train = false;
       |);
     ];
     +distance (1263);
+    +estimated-train-cost (1500 + 8450 + 12000 + 1500 + 1150 + 250 + 330 + 330 + 330 + 290+ 200);
   >
 
 >

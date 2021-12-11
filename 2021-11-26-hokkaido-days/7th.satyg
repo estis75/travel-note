@@ -26,33 +26,40 @@ let day7 = '<
         title = {函館丼（カニ・ウニ・いくら）};
         cost = 2700;
         opt = {体を壊す味だった};
+        is-train = false;
       |);
       (|
         title = {間食};
         cost = 270;
         opt = {};
+        is-train = false;
       |);
       (|
         title = {洗濯};
         cost = 400;
         opt = {};
+        is-train = false;
       |);
       (|
         title = {六花亭のお菓子};
         cost = 550;
         opt = {おいしい．食べたくなるのがわかる．};
+        is-train = false;
       |);
       (|
         title = {札幌二郎};
         cost = 800;
         opt = {おなかいっぱい};
+        is-train = false;
       |);
       (|
         title = {明日の朝食};
         cost = 497;
         opt = {セコマ産};
+        is-train = false;
       |);
     ];
     +distance (298);
+    +estimated-train-cost ((6270 + 2640));
   >
 >

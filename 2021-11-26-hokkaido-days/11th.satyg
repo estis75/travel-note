@@ -78,48 +78,64 @@ let day11 = '<
         title = {ドトール};
         cost = 643;
         opt = {ホテルでの朝食の後の優雅な朝ごはん第二弾};
+        is-train = false;
       |);
       (|
         title = {JRタワー展望室 T38};
         cost = 740;
         opt = {景色がよかった（こなみ）};
+        is-train = false;
       |);
       (|
         title = {おみやげと輸送費};
         cost = 3260 - 3000;
         opt = {};
+        is-train = false;
       |);
       (|
         title = {北大生協ごはん};
         cost = 999;
         opt = {};
+        is-train = false;
       |);
       (|
         title = {味噌ラーメン ミニ};
         cost = 650;
         opt = {美味しい．お腹いっぱいだったからミニを頼んだけど，普通に量あって驚いた．};
+        is-train = false;
       |);
       (|
         title = {おみやげ};
         cost = 508;
         opt = {これ家で食べるのたのしみ};
+        is-train = false;
       |);
       (|
         title = {おみやげ};
         cost = 783;
         opt = {これは余ったら私がたべる};
+        is-train = false;
+      |);
+      (|
+        title = {飛行機代};
+        cost = 7760 + 640;
+        opt = {この旅行前に支払い済み};
+        is-train = true;
       |);
       (|
         title = {ラピート};
         cost = 1500;
         opt = {乗りたかったので};
+        is-train = true;
       |);
       (|
         title = {ひのとり};
         cost = 620 ;
         opt = {乗りたかったので};
+        is-train = true;
       |);
     ];
     +distance (1319);
+    +estimated-train-cost (1150 + 8400 + 1500 + (570 + 620));
   >
 >

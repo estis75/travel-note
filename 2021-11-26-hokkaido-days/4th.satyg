@@ -98,38 +98,46 @@ let day4 = '<
         title = {カツカレー};
         cost = 950;
         opt = {とても美味しかった};
+        is-train = false;
       |);
       (|
         title = {天狗まんじゅう・すあま};
         cost = 200;
         opt = {ほどよい塩味が\emph{こしあん}の甘みを引き立たせていて良かった};
+        is-train = false;
       |);
       (|
-        title = {旧室蘭駅　記念硬券};
+        title = {旧室蘭駅 記念硬券};
         cost = 200;
         opt = {};
+        is-train = false;
       |);
       (|
         title = {ホットドッグ};
         cost = 108;
         opt = {};
+        is-train = false;
       |);
       (|
         title = {おみやげ};
         cost = 3013 - 3000 + 2160 - 2000;
         opt = {たぶんたりない};
+        is-train = false;
       |);
       (|
         title = {居酒屋};
         cost = 4304 - 4000;
         opt = {};
+        is-train = false;
       |);
       (|
         title = {コーラ};
         cost = 119;
         opt = {};
+        is-train = false;
       |);
     ];
     +distance (524);
+    +estimated-train-cost ((2860 + 1150) + (4840 + 1150) + (2860 + 1830) + 750*2);
   >
 >
