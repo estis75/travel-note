@@ -38,7 +38,7 @@ let day10 = '<
     +p{
       まだ明日があるのでまとめというわけではないですが，
       思ったより電波には困らなかったですね．
-      あとHOKKAIDO LOVE券がほんとに強かった．
+      あと HOK-KAIDO LOVE 券がほんとに強かった．
       昔は18切符で埋めることを考えていましたが，
       特急があるのとないのとでは精神衛生上雲泥の差があると思います．（特にトイレ）
       事件はいっぱいありましたが，今回の旅行一回で北海道を抑えきれたのは良かったと思います．
@@ -60,33 +60,47 @@ let day10 = '<
       (|
         title = {網走監獄入館料};
         cost = 690;
-        opt = {}
+        opt = {};
+        is-train = false;
+      |);
+      (|
+        title = {網走バス};
+        cost = 240;
+        opt = {};
+        is-train = true;
       |);
       (|
         title = {お昼ごはん};
         cost = 990;
-        opt = {カニの身が高いらしい．}
+        opt = {カニの身が高いらしい．};
+        is-train = false;
       |);
       (|
         title = {アルフォート};
         cost = 110;
-        opt = {おやつ}
+        opt = {おやつ};
+        is-train = false;
       |);
       (|
         title = {サッポロクラシック 富良野VINTAGE ${\times 18} + 輸送費};
         cost = 6072;
-        opt = {配ります．}
+        opt = {配ります．};
+        is-train = false;
       |);
       (|
         title = {お寿司};
         cost = 2277 - 2000;
-        opt = {美味しかった}
+        opt = {美味しかった};
+        is-train = false;
       |);
       (|
         title = {最後の晩餐};
         cost = 986;
-        opt = {ありがとう北海道}
+        opt = {ありがとう北海道};
+        is-train = false;
       |);
     ];
+    +distance (359);
+    +estimated-train-cost (240 + (7340 + 3170));
   >
 >

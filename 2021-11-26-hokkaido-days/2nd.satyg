@@ -185,18 +185,23 @@ let day2 = '<
       (|
         title = {間食の予定だった昼食と飲み物};
         cost = 588;
-        opt = {なかったらしんでたかもしれん}
+        opt = {なかったらしんでたかもしれん};
+        is-train = false;
       |);
       (|
         title = {たおか，油そば野菜盛};
         cost = 720;
-        opt = {おいしかった}
+        opt = {おいしかった};
+        is-train = false;
       |);
       (|
         title = {コーラ};
         cost = 119;
-        opt = {}
+        opt = {};
+        is-train = false;
       |);
     ];
+    +distance (699);
+    +estimated-train-cost ((7920 + 2640) * 2);
   >
 >

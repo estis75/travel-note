@@ -15,7 +15,7 @@ let day8 = '<
     }
     +interstation?:({沼ノ端駅北口・沼ノ端駅})?:({0931})?:({静内（新ひだか町）})?:({1135}) <
       +Itinerary.p {
-        道南バス　静内線・静内（新ひだか町）行
+        道南バス 静内線・静内（新ひだか町）行
       }
     >
     +p {
@@ -24,7 +24,7 @@ let day8 = '<
     }
     +interstation?*?:({1155})?:({浦河町役場})?:({1305}) <
       +Itinerary.p {
-        道南バス　浦河線・老人ホーム行
+        道南バス 浦河線・老人ホーム行
       }
     >
     +p {
@@ -33,7 +33,7 @@ let day8 = '<
     }
     +interstation?*?:({1321})?:({様似})?:({1357}) <
       +Itinerary.p {
-        JR北海道バス　日勝線・様似営業所行
+        JR北海道バス 日勝線・様似営業所行
       }
     >
     +p {
@@ -66,12 +66,12 @@ let day8 = '<
     }
     +interstation?*?:({1600})?:({浦河町役場})?:({1634}) <
       +Itinerary.p {
-        JR北海道バス　日勝線・向別（浦河町）行
+        JR北海道バス 日勝線・向別（浦河町）行
       }
     >
     +interstation?*?:({1640})?:({札幌駅})?:({2020}) <
       +Itinerary.p {
-        道南バス　ペガサス号・札幌行
+        道南バス ペガサス号・札幌行
       }
     >
     +p{
@@ -86,37 +86,46 @@ let day8 = '<
         title = {道南バス　静内線・静内（新ひだか町）行};
         cost = 1500;
         opt = {};
+        is-train = true;
       |);
       (|
         title = {静内駅記念硬券};
         cost = 500;
         opt = {};
+        is-train = false;
       |);
       (|
         title = {道南バス　浦河線・老人ホーム行};
         cost = 960;
         opt = {};
+        is-train = true;
       |);
       (|
         title = {JR北海道バス 日勝線・様似営業所行};
         cost = 590 - 590;
         opt = {予想通りHOKKAIDO LOVE切符の提示で行けた．LOVE．};
+        is-train = true;
       |);
       (|
         title = {セコマのカツ丼とコーラ};
         cost = 656;
         opt = {セコマは神};
+        is-train = false;
       |);
       (|
         title = {JR北海道バス 日勝線・向別（浦河町）行};
         cost = 590 - 590;
         opt = {};
+        is-train = true;
       |);
       (|
         title = {スープカレー};
         cost = 1550;
         opt = {これがとても美味しかった};
+        is-train = false;
       |);
     ];
+    +distance (363);
+    +estimated-train-cost (1490 + 1330 + 960 + 590*2 + 3250);
   >
 >

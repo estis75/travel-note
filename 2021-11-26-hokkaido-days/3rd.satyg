@@ -68,7 +68,7 @@ let day3 = '<
     }
     +interstation?*?:({1818})?:({札幌})?:({2028}) <
       +Itinerary.p{
-        JR特急あおぞら１０号 札幌行
+        JR特急おおぞら１０号 札幌行
       }
     > 
     +p{
@@ -84,72 +84,88 @@ let day3 = '<
         title = {石狩鮭めし};
         cost = 1150;
         opt = {朝食};
+        is-train = false;
       |);
       (|
         title = {お茶};
         cost = 130;
         opt = {};
+        is-train = false;
       |);
       (|
         title = {留萌駅記念乗車券};
         cost = 200;
         opt = {つい気になってしまって……};
+        is-train = false;
       |);
       (|
         title = {サッポロクラシック 富良野VINTAGE 2021};
         cost = 254;
         opt = {どこで売られてるかは知らんけど買わんわけんにはいかへん};
+        is-train = false;
       |);
       (|
         title = {小倉あんパン};
         cost = 140;
         opt = {初セコマ};
+        is-train = false;
       |);
       (|
         title = {ミルクシュー};
         cost = 140;
         opt = {美味しそうだった．美味しかった．};
+        is-train = false;
       |);
       (|
         title = {納豆そば};
         cost = 880;
         opt = {組み合わせは異常だったけども，普通においしい};
+        is-train = false;
       |);
       (|
-        title = {いろはす　ハスカップ味};
+        title = {いろはす ハスカップ味};
         cost = 130;
         opt = {私はこれをハスカップだと思ってこれから生きることになる};
+        is-train = false;
       |);
       (|
         title = {月見そば};
         cost = 440;
         opt = {新得駅の駅そば．これがお蕎麦ちゃんですか．なんかもさっとしてる？};
+        is-train = false;
       |);
       (|
         title = {ガラナ};
         cost = 84;
         opt = {北海道で必要なものらしい};
+        is-train = false;
       |);
       (|
         title = {コーヒー};
         cost = 100;
         opt = {};
+        is-train = false;
       |);
       (|
         title = {夜食};
         cost = 258;
-        opt = {}
+        opt = {};
+        is-train = false;
       |);
       (|
         title = {缶ジュース（FANTA 白桃）};
         cost = 100;
-        opt = {洗濯機のコインがなかった（ゲーセンで使った）ので崩した}
+        opt = {洗濯機のコインがなかった（ゲーセンで使った）ので崩した};
+        is-train = false;
       |);
       (|
         title = {洗濯};
         cost = 300;
-        opt = {部屋は完走してるのであと一歩なら乾燥できる}
+        opt = {部屋は完走してるのであと一歩なら乾燥できる};
+        is-train = false;
       |);
     ];
+    +distance (483);
+    +estimated-train-cost ((3630 + 1830) + 4840 + (3630 + 2200));
   >
 >

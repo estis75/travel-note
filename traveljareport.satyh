@@ -45,6 +45,7 @@ module StdJaReport : sig
   val font-cjk-gothic   : string * float * float
   val set-latin-font : (string * float * float) -> context -> context
   val set-cjk-font   : (string * float * float) -> context -> context
+  val conclusion-scheme : context -> block-text -> block-boxes
   direct \ref : [string] inline-cmd
   direct \ref-page : [string] inline-cmd
   direct \figure : [string?; inline-text; block-text] inline-cmd
@@ -70,7 +71,7 @@ end = struct
     | TOCElementChapter    of string * inline-text
     | TOCElementSection    of string * inline-text
     | TOCElementSubsection of string * inline-text
-
+    | TOCElementConclusion of unit
 
   let generate-fresh-label =
     let-mutable count <- 0 in
@@ -391,6 +392,21 @@ end = struct
           | TOCElementSubsection(label, title) ->
             bbacc +++ block-nil
 
+          | TOCElementConclusion() ->
+                let it-page = embed-string (get-cross-reference-page `conclusion`) in
+                let ib-indent = inline-skip toc-subsection-indent in
+                let ib-title = read-inline ctx-doc {総括} ++ inline-skip 3pt in
+                let ib-page = inline-skip 3pt ++ read-inline ctx-doc it-page in
+                let ib-middle =
+                  let w = (get-text-width ctx-doc) -' (get-natural-width ib-indent)
+                    -' (get-natural-width ib-title) -' (get-natural-width ib-page) in
+                    if w <' 0pt then inline-fil else
+                      make-dots-line ctx-doc w
+                in
+                  bbacc +++ line-break true true ctx-doc
+                    (ib-indent ++ inline-frame-breakable no-pads (Annot.link-to-location-frame `conclusion` None) (ib-title ++ ib-middle ++ ib-page))
+
+
           )) block-nil
         in
           (section-heading ctx-doc ib-toc-title) +++ bb-toc-main
@@ -581,6 +597,25 @@ end = struct
       line-break true false (ctx |> set-paragraph-margin section-top-margin section-bottom-margin)
         (inline-frame-breakable no-pads (Annot.register-location-frame label)
           (ib-num ++ (inline-skip 10pt) ++ ib-title ++ (inline-fil)))
+    in
+    let bb-inner = read-block ctx inner in
+      bb-title +++ bb-inner
+
+
+  let conclusion-scheme ctx inner =
+    let ctx = (ctx |> set-font-size font-size-normal) in
+    let ctx-title = make-section-title ctx in
+    let () = toc-acc-ref <- TOCElementConclusion() :: !toc-acc-ref in
+    let ib-num =
+      read-inline ctx-title (embed-string (`総括`))
+        ++ hook-page-break (fun pbinfo _ -> register-cross-reference (`conclusion:page`) (arabic pbinfo#page-number))
+    in
+    let bb-title =
+      let ib =
+        inline-frame-breakable no-pads (Annot.register-location-frame `conclusion`)
+          (ib-num ++ (inline-fil))
+      in
+      section-heading ctx ib
     in
     let bb-inner = read-block ctx inner in
       bb-title +++ bb-inner
