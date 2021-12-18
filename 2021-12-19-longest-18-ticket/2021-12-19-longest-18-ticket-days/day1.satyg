@@ -1,0 +1,53 @@
+@import: ../travel-note-lib/traveljareport
+@import: ../travel-note-lib/itinerary
+@require: itemize
+
+let day1 = '<
+  +section{12/19} <
+    +interstation?:({京都})?:({0615})?:({米原})?:({0722}) <
+      +Itinerary.p{
+        JR琵琶湖線・長浜行
+      }
+    >
+    +interstation?*?:({0738})?:({大垣})?:({0814}) <
+      +Itinerary.p{
+        JR東海道本線・大垣行
+      }
+    >
+    +interstation?*?:({0824})?:({豊橋})?:({0955}) <
+      +Itinerary.p{
+        JR東海道本線新快速・豊橋行
+      }
+    >
+    +interstation?*?:({1007})?:({新所原})?:({1016}) <
+      +Itinerary.p{
+        JR東海道本線・浜松行
+      }
+    >
+    +interstation?*?:({1022})?:({掛川})?:({1231}) <
+      +Itinerary.p{
+        天竜浜名湖鉄道・掛川行
+      }
+    >
+    +interstation?*?:({1236})?:({島田})?:({1255}) <
+      +Itinerary.p{
+        JR東海道本線・静岡行
+      }
+      +notation<
+        +p{
+          別に静岡に行ってもええとおもうんやけどなぁ
+        }
+      >
+      +todo<
+        +listing{
+          * 打ち消し線を実装する
+        }
+      >
+    >
+    +interstation?*?:({1324})?:({熱海})?:({1514}) <
+      +Itinerary.p{
+        JR東海道本線・熱海行
+      }
+    >
+  >
+>
