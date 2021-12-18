@@ -1,0 +1,73 @@
+@import: ../travel-note-lib/traveljareport
+@import: ../travel-note-lib/itinerary
+@require: itemize
+
+let day2 = '<
+  +section{12/20} <
+    +interstation?:({東京})?:({0455})?:({横浜})?:({0526}) <
+      +Itinerary.p{
+        JR横須賀線・久里浜行
+      }
+    >
+    +interstation?*?:({0528})?:({小田原})?:({0621}) <
+      +Itinerary.p{
+        JR東海道本線・小田原行
+      }
+    >
+    +interstation?*?:({0622})?:({熱海})?:({0645}) <
+      +Itinerary.p{
+        JR東海道本線・熱海行
+      }
+    >
+    +interstation?*?:({0649})?:({浜松})?:({0918}) <
+      +Itinerary.p{
+        JR東海道本線・浜松行
+      }
+    >
+    +interstation?*?:({0923})?:({豊橋})?:({0957}) <
+      +Itinerary.p{
+        JR東海道本線・豊橋行
+      }
+    >
+    +interstation?*?:({1002})?:({大垣})?:({1132}) <
+      +Itinerary.p{
+        JR東海道本線快速・大垣行
+      }
+    >
+    +interstation?*?:({1142})?:({米原})?:({1217}) <
+      +Itinerary.p{
+        JR東海道本線・米原行
+      }
+    >
+    +interstation?*?:({1220})?:({姫路})?:({1447}) <
+      +Itinerary.p{
+        JR琵琶湖線新快速・姫路行
+      }
+    >
+    +interstation?*?:({1503})?:({相生})?:({1523}) <
+      +Itinerary.p{
+        JR山陽本線・播州赤穂行
+      }
+    >
+    +interstation?*?:({1525})?:({糸崎})?:({1805}) <
+      +Itinerary.p{
+        JR山陽本線・糸崎行
+      }
+    >
+    +interstation?*?:({1829})?:({徳山})?:({2158}) <
+      +Itinerary.p{
+        JR山陽本線・徳山行
+      }
+    >
+    +interstation?*?:({2159})?:({下関})?:({2350}) <
+      +Itinerary.p{
+        JR山陽本線・下関行
+      }
+    >
+    +interstation?*?:({2351})?:({小倉})?:({0005}) <
+      +Itinerary.p{
+        JR山陽本線・小倉行
+      }
+    >
+  >
+>

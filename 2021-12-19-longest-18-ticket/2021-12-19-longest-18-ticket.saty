@@ -2,6 +2,7 @@
 @import: ./travel-note-lib/itinerary
 
 @import: ./2021-12-19-longest-18-ticket-days/day1
+@import: ./2021-12-19-longest-18-ticket-days/day2
 
 document (|
   title = {青春18きっぷ 東京発一日最長移動};
@@ -18,4 +19,5 @@ document (|
     筆者としては一度はやっておきたい経路だったので，今回急遽旅程を設定し，飛び出したものを記録とするところである．
   }
   #day1;
+  #day2;
 >
