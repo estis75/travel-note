@@ -1,0 +1,35 @@
+@import: ./travel-note-lib/traveljareport
+@import: ./travel-note-lib/itinerary
+
+document (|
+  title = {突発名鉄・市営地下鉄埋め};
+  author = {\@estis_jk};
+  date = {2022/02/05};
+  show-title = true;
+  show-toc = false;
+|) '<
+  +preface{
+    何故か仕事で愛知県に来ることになり，
+    何故か愛知県で降ろしてもらうことができたので，
+    その足で名鉄を埋めてしまおうと考えた（02/04）のが今回の移動のきっかけである．
+    なお，この記録を書いている現在（02/05 07:34），
+    全く予定が立っていないため，取り逃しや今日中に帰れない可能性が懸念されている．
+  }
+
+  +interstation?:({名鉄名古屋})?:({0630})?:({中部国際空港})?:({0703}) <
+    +Itinerary.p{
+      名鉄名古屋本線ミュースカイ・中部国際空港行
+    }
+  >
+  +interstation?*?:({0719})?:({太田川})?:({0746}) <
+    +Itinerary.p{
+      名鉄空港線準急・新可児行
+    }
+  >
+  +interstation?*?:({0750})?:({内海})?:({0846}) <
+    +Itinerary.p{
+      名鉄河和線・内海行
+    }
+  >
+  
+>

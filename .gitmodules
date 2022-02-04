@@ -1,3 +1,6 @@
 [submodule "2021-12-19-longest-18-ticket/travel-note-lib"]
 	path = 2021-12-19-longest-18-ticket/travel-note-lib
 	url = https://github.com/estis75/travel-note-lib.git
+[submodule "2022-02-05-aichi/travel-note-lib"]
+	path = 2022-02-05-aichi/travel-note-lib
+	url = https://github.com/estis75/travel-note-lib.git
